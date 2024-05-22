@@ -212,8 +212,24 @@ async function handleRequest(req: Request, res: Response) {
         }
       } else if (phoneNumberContact) {
         primaryContact = phoneNumberContact;
+        await prisma.contact.create({
+          data: {
+            email,
+            phoneNumber,
+            linkedId: primaryContact.id,
+            linkPrecedence: "secondary",
+          },
+        });
       } else {
         primaryContact = emailContact;
+        await prisma.contact.create({
+          data: {
+            email,
+            phoneNumber,
+            linkedId: primaryContact.id,
+            linkPrecedence: "secondary",
+          },
+        });
       }
     }
 
