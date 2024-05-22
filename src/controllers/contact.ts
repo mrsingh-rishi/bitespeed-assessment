@@ -242,16 +242,16 @@ async function handleRequest(req: Request, res: Response) {
 
     const primaryContactId = primaryContact.id;
     const emails = Array.from(
-      new Set(allLinkedContacts.map((contact) => contact.email).filter(Boolean))
+      new Set(allLinkedContacts.map((contact:any) => contact.email).filter(Boolean))
     );
     const phoneNumbers = Array.from(
       new Set(
-        allLinkedContacts.map((contact) => contact.phoneNumber).filter(Boolean)
+        allLinkedContacts.map((contact:any) => contact.phoneNumber).filter(Boolean)
       )
     );
     const secondaryContactIds = allLinkedContacts
-      .filter((contact) => contact.linkPrecedence === "secondary")
-      .map((contact) => contact.id);
+      .filter((contact:any) => contact.linkPrecedence === "secondary")
+      .map((contact:any) => contact.id);
 
     return res.json({
       contact: {
